@@ -9,7 +9,7 @@ if (class_exists('favorites')) {
 
 				<div id="breadcrumbs">
 	<?php printParentBreadcrumb('', ' / ', ' / '); ?>
-					<h3 id="breadcrumb-title"><?php printAlbumTitle(); ?></h3>
+					<h3 id="breadcrumb-title"><?php printAlbumTitle(); printCurrentPageAppendix(); ?></h3>
 				</div>
 
 				<div id="albums">
@@ -74,7 +74,7 @@ if (class_exists('favorites')) {
 
 				<div class="button-group">
 	<?php if (function_exists('printGoogleMap')) printGoogleMap(gettext('Show Map'), 'google-map-link', 'colorbox'); ?>
-	<?php @call_user_func('printSlideShowLink'); ?>
+	<?php callUserFunction('printSlideShowLink'); ?>
 	<?php if (function_exists('printAddToFavorites')) include ('inc-favorites.php'); ?>
 					<div id="album-jump"><?php if (function_exists('printAlbumMenu')) printAlbumMenu('jump', 'count'); ?></div>
 				</div>

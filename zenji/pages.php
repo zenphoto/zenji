@@ -38,7 +38,7 @@
 		<div class="wrapper clearfix">
 				<?php if (function_exists('printCommentForm')) { ?>
 				<section class="content">
-				<?php @call_user_func('printCommentForm'); ?>
+				<?php callUserFunction('printCommentForm'); ?>
 				</section>
 					<?php if (function_exists('printRelatedItems')) { ?>
 					<section class="sidebar">

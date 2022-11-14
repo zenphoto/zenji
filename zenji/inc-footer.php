@@ -1,7 +1,7 @@
 <footer class="section" id="footer" role="contentinfo">
 	<div class="wrapper clearfix">
 		<div class="content full">
-			<?php @call_user_func('printLanguageSelector'); ?>
+			<?php callUserFunction('printLanguageSelector'); ?>
 			<?php
 			echo getOption('zj_copy') . ' · ';
 			if (class_exists('RSS'))
@@ -13,7 +13,7 @@
 			?>
 			<div id="footer-login">
 				<?php
-				@call_user_func('printUserLogin_out', '', '', 0);
+				callUserFunction('printUserLogin_out', '', '', 0);
 				if (!zp_loggedin() && function_exists('printRegisterURL')) {
 					printRegisterURL(gettext('Register for this site'), '', '');
 				}

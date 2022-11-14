@@ -6,7 +6,7 @@
 
 			<div id="breadcrumbs">
 				<?php printParentBreadcrumb('', ' / ', ' / '); ?>
-				<h3 id="breadcrumb-title"><?php printAlbumTitle(); ?></h3>
+				<h3 id="breadcrumb-title"><?php printAlbumTitle(); printCurrentPageAppendix(); ?></h3>
 			</div>
 
 			<div id="albums">
@@ -80,7 +80,7 @@
 					printGoogleMap(gettext('Show Map'), 'google-map-link', 'colorbox');
 				if (class_exists('RSS'))
 					printRSSLink($rss_option, '', $rss_title, '', false, 'rss-link');
-				@call_user_func('printSlideShowLink');
+				callUserFunction('printSlideShowLink');
 				?>
 			</div>
 			<?php
@@ -103,7 +103,7 @@
 		<div class="wrapper clearfix">
 				<?php if (function_exists('printCommentForm')) { ?>
 				<section class="content">
-				<?php @call_user_func('printCommentForm'); ?>
+				<?php callUserFunction('printCommentForm'); ?>
 				</section>
 					<?php if (function_exists('printRelatedItems')) { ?>
 					<section class="sidebar">

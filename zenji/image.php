@@ -51,7 +51,7 @@
 					printGoogleMap(gettext('Show Map'), 'google-map-link', 'colorbox');
 				if (getOption('zj_download')) {
 					?><a id="download-button" href="<?php echo html_encode(getFullImageURL()); ?>" title="<?php echo gettext('Download'); ?>"><?php echo gettext('Download') . ' (' . getFullWidth() . ' x ' . getFullHeight() . ')'; ?></a><?php } ?>
-			<?php @call_user_func('printSlideShowLink'); ?>
+			<?php callUserFunction('printSlideShowLink'); ?>
 			</div>
 			<?php
 			if (extensionEnabled('scriptless-socialsharing')) {
@@ -71,7 +71,7 @@
 		<div class="wrapper clearfix">
 				<?php if (function_exists('printCommentForm')) { ?>
 				<section class="content">
-				<?php @call_user_func('printCommentForm'); ?>
+				<?php callUserFunction('printCommentForm'); ?>
 				</section>
 					<?php if (function_exists('printRelatedItems')) { ?>
 					<section class="sidebar">

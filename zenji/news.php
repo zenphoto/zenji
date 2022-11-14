@@ -56,7 +56,7 @@
 						printNewsIndexURL(null, '');
 						echo ' / ';
 						?>
-						<h2 id="breadcrumb-title"><?php printCurrentNewsArchive(''); ?></h2>
+						<h2 id="breadcrumb-title"><?php printCurrentNewsArchive(''); printCurrentPageAppendix(); ?></h2>
 					<?php } else if (in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
 						printNewsIndexURL(null, '');
 						echo ' / ';
@@ -110,7 +110,7 @@
 		<div class="wrapper clearfix">
 			<?php if (function_exists('printCommentForm')) { ?>
 				<section class="content">
-					<?php @call_user_func('printCommentForm'); ?>
+					<?php callUserFunction('printCommentForm'); ?>
 				</section>
 				<?php if (function_exists('printRelatedItems')) { ?>
 					<section class="sidebar">

@@ -24,7 +24,7 @@ include('inc-header.php'); ?>
 				
 				<div id="breadcrumbs">
 					<?php printSearchBreadcrumb(' / '); ?>
-					<h2 id="breadcrumb-title"><?php echo gettext('Search Results'); ?></h2>
+					<h2 id="breadcrumb-title"><?php echo gettext('Search Results'); printCurrentPageAppendix(); ?></h2>
 				</div>
 
 				<div id="albums">
@@ -121,7 +121,7 @@ include('inc-header.php'); ?>
 				<?php } ?>
 				<div class="button-group">
 					<?php if (function_exists('printGoogleMap')) printGoogleMap(gettext('Show Map'),'google-map-link','colorbox'); ?>
-					<?php @call_user_func('printSlideShowLink'); ?>
+					<?php callUserFunction('printSlideShowLink'); ?>
 				</div>
 				<div id="album-jump"><?php if(function_exists('printAlbumMenu')) printAlbumMenu('jump','count'); ?></div>
 			</section>

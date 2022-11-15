@@ -155,7 +155,7 @@ switch ($_zp_gallery_page) {
 				<nav id="main-nav" role="navigation">
 					<?php if (getOption('zj_search')) printSearchForm('','search',$_zp_themeroot.'/images/search.png',gettext('Search'),$_zp_themeroot.'/images/list.png'); ?>
 					<ul id="nav">
-						<?php if ($_zp_gallery->getWebsiteURL()) { ?>
+						<?php if ($_zp_gallery->getParentSiteURL()) { ?>
 						<li><?php printHomeLink(); ?><li>
 						<?php } ?>
 						<li <?php if ($galleryactive) { ?>class="active" <?php } ?>>

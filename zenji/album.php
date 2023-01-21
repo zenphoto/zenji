@@ -47,8 +47,12 @@
 					</article>
 				<?php endwhile; ?>
 			</div>
-
-			<?php printPageListWithNav('Â« ' . gettext('Prev'), gettext('Next') . ' Â»'); ?>
+			<?php
+			if (function_exists('printOpenStreetMap')) {
+				openStreetMap::printOpenStreetMap();
+			}
+			printPageListWithNav('Ç ' . gettext('Prev'), gettext('Next') . ' È'); 
+			?>
 
 		</section>
 		<section class="sidebar">
@@ -57,12 +61,15 @@
 					<?php
 					$albumcount = getNumAlbums();
 					$imagecount = getNumImages();
-					if ($albumcount)
+					if ($albumcount) {
 						echo $albumcount . ' ' . gettext('Subalbums');
-					if (($albumcount) && ($imagecount))
+					}
+					if (($albumcount) && ($imagecount)) {
 						echo ', '; // if both, print out divider
-					if ($imagecount)
+					}
+					if ($imagecount) {
 						echo $imagecount . ' ' . gettext('Images');
+					}
 					?>
 				</span>
 				<?php if (getAlbumDate()) { ?><span><i class="fa fa-calendar-o"></i>&nbsp;<?php printAlbumDate(); ?></span><?php } ?>
@@ -72,14 +79,16 @@
 			</div>
 
 			<div id="description"><?php printAlbumDesc(); ?></div>
-			<?php if (getTags()) printTags('links', '', 'taglist', ''); ?>
+			<?php if (getTags()) {printTags('links', '', 'taglist', '');} ?>
 
 			<div class="button-group">
 				<?php
-				if (function_exists('printGoogleMap'))
-					printGoogleMap(gettext('Show Map'), 'google-map-link', 'colorbox');
-				if (class_exists('RSS'))
+				if (function_exists('printGoogleMap')) {
+					printGoogleMap(gettext('Show Google map'), 'google-map-link', 'colorbox');
+				}
+				if (class_exists('RSS')) {
 					printRSSLink($rss_option, '', $rss_title, '', false, 'rss-link');
+				}
 				callUserFunction('printSlideShowLink');
 				?>
 			</div>
@@ -87,8 +96,9 @@
 			if (extensionEnabled('scriptless-socialsharing')) {
 				scriptlessSocialsharing::printButtons(gettext('Share: '));
 			}
-			if (function_exists('printAddToFavorites'))
+			if (function_exists('printAddToFavorites')) {
 				include ('inc-favorites.php');
+			}
 			if (function_exists('printRating')) {
 				?><div id="rating"><?php echo printRating(); ?></div>
 			<?php }

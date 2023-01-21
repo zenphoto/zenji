@@ -36,16 +36,18 @@
 				<?php if (getNewsCategories()) { ?><span><?php printNewsCategories(', ', '', 'catlist'); ?></span><?php } ?>
 				</div>
 				<?php
-				if (getNewsExtraContent())
+				if (getNewsExtraContent()) {
 					printNewsExtraContent();
-				if (getTags())
+				}			
+				if (getTags()) {
 					printTags('links', '', 'taglist', '');
-
+				}					
 				if (extensionEnabled('scriptless-socialsharing')) {
 					scriptlessSocialsharing::printButtons(gettext('Share: '));
 				}
-				if (function_exists('printRating')) {
-					?><div id="rating"><?php echo printRating(); ?></div><?php } ?>
+				if (function_exists('printRating')) { ?>
+					<div id="rating"><?php echo printRating(); ?></div><?php 
+				} ?>
 			</section>
 
 				<?php } else { // for news article loops ?>

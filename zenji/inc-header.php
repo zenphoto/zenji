@@ -1,7 +1,8 @@
 <?php
 // force UTF-8 Ø
-if (!defined('WEBPATH')) die();
-
+if (!defined('WEBPATH')) {
+die();
+}
 // Set some default variables
 $galleryactive = false; // determine if "Gallery" menu item should be active (highlighted)
 $rss_option = 'Gallery'; // default RSS option - latest gallery images
@@ -30,7 +31,7 @@ switch ($_zp_gallery_page) {
 	case 'slideshow.php':
 		// add some room for controls, title, and descriptions
 		$add = 200;
-		if (extensionEnabled('slideshow')) {
+		if (extensionEnabled('slideshow2')) {
 			$ssheight = getOption('slideshow_height') + $add;
 		} else {
 			$ssheight = getOption('cycle-slideshow_height') + $add;
@@ -57,16 +58,16 @@ switch ($_zp_gallery_page) {
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="<?php echo LOCAL_CHARSET; ?>" />
+	<meta charset="<?php echo LOCAL_CHARSET; ?>">
 	<?php
 	zp_apply_filter('theme_head');
 	printHeadTitle();
-	if ((class_exists('RSS')) && ($rss_option != null)) printRSSHeaderLink($rss_option,$rss_title);
+	if ((class_exists('RSS')) && ($rss_option != null)) {printRSSHeaderLink($rss_option,$rss_title);}
 	?>
 
-	<meta name="description" content="<?php echo $metadesc; ?>" />
+	<meta name="description" content="<?php echo $metadesc; ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/fontawesome/css/font-awesome.min.css" type="text/css" />
+	<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/fontawesome/css/font-awesome.min.css" type="text/css">
 	<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/css/core.css">
 	<?php if ((getOption('zj_style') != 'minimal')) { ?>
 	<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/css/<?php echo getOption('zj_style'); ?>.css">
@@ -122,19 +123,19 @@ switch ($_zp_gallery_page) {
 	.wrapper{max-width:<?php echo getOption('zj_maxwidth'); ?>px;}
 	<?php
 	// print css for link color chosen in options
-	if (getOption('zj_linkcolor') != null) echo '
+	if (getOption('zj_linkcolor') != null) {echo '
 		a,body.modern #nav li.active a,body.modern #nav li a.active,body#dark.modern #nav li.active a,body#dark.modern #nav li a.active
 			{color:'.getOption('zj_linkcolor').';}
 		.button,body.modern .sidebar .button-group a,body.modern .img-nav,body.modern .news-nav
 			{background:'.getOption('zj_linkcolor').';}
-	'; ?>
+	';} ?>
 	<?php
 	// print custom css from theme options if present
-	if (getOption('zj_customcss') != null) echo getOption('zj_customcss'); ?>
+	if (getOption('zj_customcss') != null) {echo getOption('zj_customcss');} ?>
 
 	<?php
 	// if on slideshow page need to set show height
-	if ($ssheight) echo '.slideshow{height:'.$ssheight.'px;}#slideshowpage{height:'.$ssheight.'px;}'; ?>
+	if ($ssheight) {echo '.slideshow{height:'.$ssheight.'px;}#slideshowpage{height:'.$ssheight.'px;}';}?>
 	</style>
 
 </head>
@@ -147,13 +148,15 @@ switch ($_zp_gallery_page) {
 			<div class="content full">
 				<div id="logo">
 					<?php if (getOption('zj_logo') != '') { ?>
-					<h1 id="image-logo"><a href="<?php echo html_encode(getGalleryIndexURL()); ?>"><img src="<?php echo pathurlencode(WEBPATH.'/'.UPLOAD_FOLDER.'/'.getOption('zj_logo')); ?>" alt="<?php printGalleryTitle(); ?>" /></a></h1>
+					<h1 id="image-logo"><a href="<?php echo html_encode(getGalleryIndexURL()); ?>"><img src="<?php echo pathurlencode(WEBPATH.'/'.UPLOAD_FOLDER.'/'.getOption('zj_logo')); ?>" alt="<?php printGalleryTitle(); ?>"></a></h1>
 					<?php } else { ?>
 					<h1><a href="<?php echo html_encode(getGalleryIndexURL()); ?>"><?php printGalleryTitle(); ?></a></h1>
 					<?php } ?>
 				</div>
 				<nav id="main-nav" role="navigation">
-					<?php if (getOption('zj_search')) printSearchForm('','search',$_zp_themeroot.'/images/search.png',gettext('Search'),$_zp_themeroot.'/images/list.png'); ?>
+					<?php if (getOption('zj_search')) {
+						printSearchForm('','search',$_zp_themeroot.'/images/search.png',gettext('Search'),$_zp_themeroot.'/images/list.png');
+					} ?>
 					<ul id="nav">
 						<?php if ($_zp_gallery->getParentSiteURL()) { ?>
 						<li><?php printHomeLink(); ?><li>
@@ -166,7 +169,7 @@ switch ($_zp_gallery_page) {
 							<a href="<?php echo getNewsIndexURL(); ?>"><?php echo gettext('News'); ?></a>
 						</li>
 						<?php } ?>
-						<?php if (ZP_PAGES_ENABLED) printPageMenu('list-top','','active','submenu','active','',0,false); ?>
+						<?php if (ZP_PAGES_ENABLED) {printPageMenu('list-top','','active','submenu','active','',0,false);} ?>
 						<?php if (getOption('zj_archive')) { ?>
 						<li <?php if (($_zp_gallery_page == "archive.php") || ($_zp_gallery_page == "search.php")) { ?>class="active" <?php } ?>>
 							<a href="<?php echo getCustomPageURL('archive'); ?>" title="<?php echo gettext('Archive'); ?>"><?php echo gettext('Archive'); ?></a>

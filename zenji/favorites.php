@@ -1,19 +1,19 @@
 <?php
 if (class_exists('favorites')) {
 	include('inc-header.php');
-	?>
+?>
 
 	<main class="section" id="middle" role="main">
 		<div class="wrapper clearfix">
 			<section class="content">
 
 				<div id="breadcrumbs">
-	<?php printParentBreadcrumb('', ' / ', ' / '); ?>
+					<?php printParentBreadcrumb('', ' / ', ' / '); ?>
 					<h3 id="breadcrumb-title"><?php printAlbumTitle(); printCurrentPageAppendix(); ?></h3>
 				</div>
 
 				<div id="albums">
-	<?php while (next_album()): ?>
+				<?php while (next_album()): ?>
 						<article class="album">
 							<div class="thumb">
 								<a href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo gettext('View album:'); ?> <?php printAnnotatedAlbumTitle(); ?>">
@@ -31,27 +31,28 @@ if (class_exists('favorites')) {
 									}
 									?>
 									<div class="album-title"><?php printAlbumTitle(); ?></div>
-		<?php if (getAlbumDate()) { ?><div class="album-date"><i class="fa fa-calendar-o"></i>&nbsp;<?php printAlbumDate(''); ?></div><?php } ?>
+									<?php if (getAlbumDate()) { ?>
+									<div class="album-date"><i class="fa fa-calendar-o"></i>&nbsp;<?php printAlbumDate(''); ?></div><?php } ?>
 									<div class="album-desc"><?php echo strip_tags(truncate_string(getAlbumDesc(), 120, '...')); ?></div>
-								</a>
+							</a>
 							</div>
 						</article>
-	<?php endwhile; ?>
+				<?php endwhile; ?>
 				</div>
 
 				<div id="images">
-	<?php while (next_image()): ?>
+				<?php while (next_image()): ?>
 						<article class="image">
 							<div class="thumb">
 								<a href="<?php echo html_encode(getImageURL()); ?>" title="<?php printBareImageTitle(); ?>">
-		<?php printImageThumb(getAnnotatedImageTitle()); ?>
+									<?php printImageThumb(getAnnotatedImageTitle()); ?>
 								</a>
 							</div>
 						</article>
 				<?php endwhile; ?>
 				</div>
 
-	<?php printPageListWithNav('« ' . gettext('Prev'), gettext('Next') . ' »'); ?>
+				<?php printPageListWithNav('« ' . gettext('Prev'), gettext('Next') . ' »'); ?>
 
 			</section>
 			<section class="sidebar">
@@ -60,12 +61,17 @@ if (class_exists('favorites')) {
 						<?php
 						$albumcount = getNumAlbums();
 						$imagecount = getNumImages();
-						if ($albumcount)
+						if ($albumcount) {
 							echo $albumcount . ' ' . gettext('Albums');
-						if (($albumcount) && ($imagecount))
+						}
+							
+						if (($albumcount) && ($imagecount)) {
 							echo ', '; // if both, print out divider
-						if ($imagecount)
+						}
+						if ($imagecount) {
 							echo $imagecount . ' ' . gettext('Images');
+						}
+							
 						?>
 					</span>
 				</div>
@@ -73,10 +79,14 @@ if (class_exists('favorites')) {
 				<div id="description"><?php printAlbumDesc(); ?></div>
 
 				<div class="button-group">
-	<?php if (function_exists('printGoogleMap')) printGoogleMap(gettext('Show Map'), 'google-map-link', 'colorbox'); ?>
-	<?php callUserFunction('printSlideShowLink'); ?>
-	<?php if (function_exists('printAddToFavorites')) include ('inc-favorites.php'); ?>
-					<div id="album-jump"><?php if (function_exists('printAlbumMenu')) printAlbumMenu('jump', 'count'); ?></div>
+					<?php if (function_exists('printGoogleMap')) {
+						printGoogleMap(gettext('Show Google map'), 'google-map-link', 'colorbox');
+					} 
+					callUserFunction('printSlideShowLink');
+					if (function_exists('printAddToFavorites')) {
+						include ('inc-favorites.php');
+					} ?>
+					<div id="album-jump"><?php if (function_exists('printAlbumMenu')) {printAlbumMenu('jump', 'count'); } ?></div>
 				</div>
 			</section>
 		</div>

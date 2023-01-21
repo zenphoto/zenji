@@ -16,18 +16,21 @@
 		</section>
 		<section class="sidebar">
 			<?php
-			if (getPageExtraContent())
+			if (getPageExtraContent()) {
 				printPageExtraContent();
-			if (getTags())
+			}
+			if (getTags()) {
 				printTags('links', '', 'taglist', '');
-
+			}
 			if (extensionEnabled('scriptless-socialsharing')) {
 				scriptlessSocialsharing::printButtons(gettext('Share: '));
-			}if (function_exists('printRating')) {
-				?><div id="rating"><?php echo printRating(); ?></div><?php } ?>
+			}
+			if (function_exists('printRating')) { ?>
+				<div id="rating"><?php echo printRating(); ?></div><?php 
+			} ?>
 			<div class="sidebar-menu">
 				<h3><?php echo gettext('Pages'); ?></h3>
-<?php printPageMenu('list', '', 'menu-active', 'submenu', 'menu-active'); ?>
+				<?php printPageMenu('list', '', 'menu-active', 'submenu', 'menu-active'); ?>
 			</div>
 		</section>
 	</div>

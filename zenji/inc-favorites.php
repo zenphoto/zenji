@@ -1,7 +1,6 @@
 <?php
 // Show only favorite lists if multi option on favorites page
-if (($_zp_gallery_page == 'favorites.php') && (getOption('favorites_multi'))) {
-	?>
+if (($_zp_gallery_page == 'favorites.php') && (getOption('favorites_multi'))) { ?>
 	<div id="favorites-box">
 		<div id="favorites-title"><i class="fa fa-heart"></i> <?php echo gettext('Favorites'); ?></div>
 	<?php printFavoritesURL(null, '', '', ''); ?>	

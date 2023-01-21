@@ -13,10 +13,15 @@
 
 			<article id="full-image">
 			<?php printDefaultSizedImage(''); ?>
+			<?php
+			if (function_exists('printOpenStreetMap')) {
+				openStreetMap::printOpenStreetMap();
+			}
+			?>
 			</article>
-<?php if (function_exists('printThumbNav')) printThumbNav(); ?>
-
+			<?php if (function_exists('printThumbNav')) {printThumbNav();} ?>
 		</section>
+		
 		<section class="sidebar">
 			<nav class="img-nav clearfix">
 				<?php if (hasPrevImage()) { ?>
@@ -25,7 +30,7 @@
 				<span class="img-number"><?php echo ImageNumber(); ?> of <?php echo getNumImages(); ?></span>
 				<?php if (hasNextImage()) { ?>
 					<a class="img-next" href="<?php echo html_encode(getNextImageURL()); ?>" title="<?php echo gettext("Next Image"); ?>"><?php echo gettext('Next'); ?><i class="fa fa-angle-right icon-after"></i></a>
-<?php } ?>
+				<?php } ?>
 			</nav>
 
 			<div class="image-info">
@@ -40,15 +45,21 @@
 			</div>
 			<div id="description"><?php printImageDesc(); ?></div>
 			<?php
-			if (getTags())
+			if (getTags()) {
 				printTags('links', '', 'taglist', '');
-			if (getOption('zj_imagemeta'))
+			}
+				
+			if (getOption('zj_imagemeta')) {
 				printImageMetadata('', false);
+			}
+				
 			?>
 			<div class="button-group">
 				<?php
-				if (function_exists('printGoogleMap'))
-					printGoogleMap(gettext('Show Map'), 'google-map-link', 'colorbox');
+				if (function_exists('printGoogleMap')) {
+					printGoogleMap(gettext('Show Google map'), 'google-map-link', 'colorbox');
+				}
+					
 				if (getOption('zj_download')) {
 					?><a id="download-button" href="<?php echo html_encode(getFullImageURL()); ?>" title="<?php echo gettext('Download'); ?>"><?php echo gettext('Download') . ' (' . getFullWidth() . ' x ' . getFullHeight() . ')'; ?></a><?php } ?>
 			<?php callUserFunction('printSlideShowLink'); ?>
@@ -57,11 +68,13 @@
 			if (extensionEnabled('scriptless-socialsharing')) {
 				scriptlessSocialsharing::printButtons(gettext('Share: '));
 			}
-			if (function_exists('printAddToFavorites'))
+			if (function_exists('printAddToFavorites')) {
 				include ('inc-favorites.php');
+			}
+				
 			if (function_exists('printRating')) {
 				?><div id="rating"><?php echo printRating(); ?></div><?php } ?>
-			<div id="album-jump"><?php if (function_exists('printAlbumMenu')) printAlbumMenu('jump', 'count'); ?></div>
+			<div id="album-jump"><?php if (function_exists('printAlbumMenu')) {printAlbumMenu('jump', 'count');} ?></div>
 		</section>
 	</div>
 </main>

@@ -4,8 +4,9 @@
 			<?php callUserFunction('printLanguageSelector'); ?>
 			<?php
 			echo getOption('zj_copy') . ' · ';
-			if (class_exists('RSS'))
+			if (class_exists('RSS')) {
 				printRSSLink('Gallery', '', 'RSS', ' · ', false, 'rss-link');
+			}	
 			if (extensionEnabled('contact_form')) {
 				printCustomPageURL(gettext('Contact us'), 'contact', '', '', ' · ');
 			}

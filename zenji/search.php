@@ -65,7 +65,7 @@ include('inc-header.php'); ?>
 					<?php endwhile; ?>
 				</div>
 
-				<?php if (($showpag) && ((hasNextPage()) || (hasPrevPage()))) printPageListWithNav("« " . gettext("prev"), gettext("next") . " »"); ?>
+				<?php if (($showpag) && ((hasNextPage()) || (hasPrevPage()))) {printPageListWithNav("« " . gettext("prev"), gettext("next") . " »");} ?>
 				
 				<?php if (($zenpage) && ($zenpagecount > 0) && ($_zp_page == 1)) { ?>
 			
@@ -94,7 +94,7 @@ include('inc-header.php'); ?>
 						</div>
 						<div class="news-content"><?php echo shortenContent(strip_tags(getNewsContent()),180,getOption('zenpage_textshorten_indicator')); ?></div>
 						<?php if (getCodeBlock(1)) { ?><div class="codeblock"><?php printCodeblock(1); ?></div><?php } ?>
-						<?php if (getTags()) printTags('links','','taglist',''); ?>
+						<?php if (getTags()) {printTags('links','','taglist','');} ?>
 					</article>
 					<?php } ?>
 				</div>
@@ -116,14 +116,20 @@ include('inc-header.php'); ?>
 				}
 				if ($total > 0 ) { ?>
 				<div id="description"><?php printf(ngettext('%1$u Hit for <em>%2$s</em>','%1$u Hits for <em>%2$s</em>',$total), $total, html_encode($searchwords));?></div>
-				<?php } else { ?>
+				<?php 
+				} else { ?>
 				<div id="description"><?php echo gettext('Sorry, no matches found. Try refining your search.'); ?></div>
-				<?php } ?>
-				<div class="button-group">
-					<?php if (function_exists('printGoogleMap')) printGoogleMap(gettext('Show Map'),'google-map-link','colorbox'); ?>
-					<?php callUserFunction('printSlideShowLink'); ?>
-				</div>
-				<div id="album-jump"><?php if(function_exists('printAlbumMenu')) printAlbumMenu('jump','count'); ?></div>
+				<?php } 
+				if (extensionEnabled('scriptless-socialsharing')) {
+					scriptlessSocialsharing::printButtons(gettext('Share: '));
+				}
+				if (function_exists('printAddToFavorites')) {
+					include ('inc-favorites.php');
+				}
+				
+				if (function_exists('printRating')) {
+					?><div id="rating"><?php echo printRating(); ?></div><?php } ?>
+				<div id="album-jump"><?php if(function_exists('printAlbumMenu')) {printAlbumMenu('jump','count');} ?></div>
 			</section>
 			
 		</div>

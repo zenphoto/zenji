@@ -43,12 +43,24 @@ class ThemeOptions {
 		setThemeOptionDefault('zj_social', true);
 		setThemeOptionDefault('zj_copy', '© '.date("Y"));
 		
-
 		// set image sizes for cach manager if used
 		if (class_exists('cacheManager')) {
-			cacheManager::deleteCacheSizes($me);
-			cacheManager::addDefaultSizedImageSize($me);
-			cacheManager::addDefaultThumbSize($me);
+			cacheManager::deleteCacheSizes();
+			cacheManager::addDefaultThumbSize();
+			cacheManager::addDefaultSizedImageSize();
+			$thumb_wmk = getOption('Image_watermark') ? getOption('Image_watermark') : null;
+			$customthumbwidth = (getOption('zj_maxwidth')) / (getOption('albums_per_row'));
+			$customthumbheight = $customthumbwidth / 2;
+			if (getOption('zj_albumthumb') == 'square') {
+				cacheManager::addCacheSize($me, NULL, $customthumbwidth, $customthumbwidth, $customthumbwidth, $customthumbwidth, NULL, NULL, NULL, $thumb_wmk, $img_effect, false);
+			} else if (getOption('zj_albumthumb') == 'landscape') {
+				cacheManager::addCacheSize($me, NULL, $customthumbwidth, $customthumbheight, $customthumbwidth, $customthumbheight, NULL, NULL, NULL, $thumb_wmk, $img_effect, false);
+			} else {
+				cacheManager::addDefaultThumbSize();
+			}
+			if (extensionEnabled('bxslider_thumb_nav')) {
+				cacheManager::addCacheSize($me, NULL, getOption('bxslider_width'), getOption('bxslider_height'), getOption('bxslider_cropw'), getOption('bxslider_croph'), NULL, NULL, NULL, $thumb_wmk, $img_effect, false);
+			}
 		}
 	}
 	

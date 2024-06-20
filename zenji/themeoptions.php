@@ -45,12 +45,13 @@ class ThemeOptions {
 		
 		// set image sizes for cach manager if used
 		if (class_exists('cacheManager')) {
-			cacheManager::deleteCacheSizes();
+			cacheManager::deleteCacheSizes($me);
 			cacheManager::addDefaultThumbSize();
 			cacheManager::addDefaultSizedImageSize();
 			$thumb_wmk = getOption('Image_watermark') ? getOption('Image_watermark') : null;
 			$customthumbwidth = (getOption('zj_maxwidth')) / (getOption('albums_per_row'));
 			$customthumbheight = $customthumbwidth / 2;
+			$img_effect = getOption('image_gray') ? 'gray' : null;
 			if (getOption('zj_albumthumb') == 'square') {
 				cacheManager::addCacheSize($me, NULL, $customthumbwidth, $customthumbwidth, $customthumbwidth, $customthumbwidth, NULL, NULL, NULL, $thumb_wmk, $img_effect, false);
 			} else if (getOption('zj_albumthumb') == 'landscape') {

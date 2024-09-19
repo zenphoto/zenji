@@ -49,12 +49,12 @@ class ThemeOptions {
 			cacheManager::addDefaultThumbSize();
 			cacheManager::addDefaultSizedImageSize();
 			$thumb_wmk = getOption('Image_watermark') ? getOption('Image_watermark') : null;
-			$customthumbwidth = (getOption('zj_maxwidth')) / (getOption('albums_per_row'));
+			$customthumbwidth = (getThemeOption('zj_maxwidth')) / (getThemeOption('albums_per_row'));
 			$customthumbheight = $customthumbwidth / 2;
-			$img_effect = getOption('image_gray') ? 'gray' : null;
-			if (getOption('zj_albumthumb') == 'square') {
+			$img_effect = getThemeOption('image_gray') ? 'gray' : null;
+			if (getThemeOption('zj_albumthumb') == 'square') {
 				cacheManager::addCacheSize($me, NULL, $customthumbwidth, $customthumbwidth, $customthumbwidth, $customthumbwidth, NULL, NULL, NULL, $thumb_wmk, $img_effect, false);
-			} else if (getOption('zj_albumthumb') == 'landscape') {
+			} else if (getThemeOption('zj_albumthumb') == 'landscape') {
 				cacheManager::addCacheSize($me, NULL, $customthumbwidth, $customthumbheight, $customthumbwidth, $customthumbheight, NULL, NULL, NULL, $thumb_wmk, $img_effect, false);
 			} else {
 				cacheManager::addDefaultThumbSize();

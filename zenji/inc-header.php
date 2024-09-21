@@ -110,8 +110,8 @@ switch ($_zp_gallery_page) {
 
 	<?php
 	// determine column widths based on options set for albums and images per row.
-	$albumgridwidth = (100/getOption('albums_per_row'))-1; // the minus 1 is to account for horizontal space on inline elements.
-	$imagegridwidth = (100/getOption('images_per_row'))-1;
+	$albumgridwidth = (100/getThemeOption('albums_per_row'))-1; // the minus 1 is to account for horizontal space on inline elements.
+	$imagegridwidth = (100/getThemeOption('images_per_row'))-1;
 	?>
 	<style>
 	@media (min-width: 600px) {

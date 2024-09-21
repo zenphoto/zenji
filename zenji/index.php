@@ -10,7 +10,7 @@
 							<a href="<?php echo html_encode(getAlbumURL()); ?>" title="<?php echo gettext('View album:'); ?> <?php printAnnotatedAlbumTitle(); ?>">
 								<?php
 								// get custom sizes for landscape option
-								$customthumbwidth = (getOption('zj_maxwidth')) / (getOption('albums_per_row'));
+								$customthumbwidth = (getOption('zj_maxwidth')) / (getThemeOption('albums_per_row'));
 								$customthumbheight = $customthumbwidth / 2;
 								// print album thumb based on theme option
 								if (getOption('zj_albumthumb') == 'square') {

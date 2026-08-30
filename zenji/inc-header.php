@@ -60,7 +60,7 @@ switch ($_zp_gallery_page) {
 <head>
 	<meta charset="<?php echo LOCAL_CHARSET; ?>">
 	<?php
-	zp_apply_filter('theme_head');
+	filter::applyFilter('theme_head');
 	printHeadTitle();
 	if ((class_exists('RSS')) && ($rss_option != null)) {printRSSHeaderLink($rss_option,$rss_title);}
 	?>
@@ -141,7 +141,7 @@ switch ($_zp_gallery_page) {
 </head>
 
 <body id="<?php echo getOption('zj_color'); ?>" class="<?php echo getOption('zj_style'); ?>">
-	<?php zp_apply_filter('theme_body_open'); ?>
+	<?php filter::applyFilter('theme_body_open'); ?>
 
 	<header class="section" id="top">
 		<div class="wrapper clearfix">
